@@ -18,7 +18,7 @@ class Program
         {
             char[] textArr = inpFile.ReadToEnd().ToCharArray();
             IList<string> words = SelectWords(textArr);
-            words = QuickSort(words);
+            QuickSort(words);
             Console.WriteLine("res");
             for (int i = 0; i < 10; i++)
             {
@@ -50,47 +50,39 @@ class Program
         return res;
     }
 
-    static private IList<string> QuickSort(IList<string> arraySegment)
+    static private void QuickSort(IList<string> arraySegment)
     {
-        if (arraySegment.Count <= 1) return arraySegment;
-        string word = arraySegment[0];
-        IList<string> mid = arraySegment.Where(x => word == x).ToList();
-        IList<string> left = arraySegment.Where(x => string.Compare(word, x) > 0).ToList();
-        IList<string> right = arraySegment.Where(x => string.Compare(word, x) < 0).ToList();
-        IList<string> res = new List<string>();
-        res = res.Concat(QuickSort(left)).ToList();
-        res = res.Concat(mid).ToList();
-        res = res.Concat(QuickSort(right)).ToList();
-        return res;
+        QuickSort(arraySegment, 0, arraySegment.Count - 1);
+    }
 
-        /*
-        if (arraySegment.Count <= 1) return;
-
-        int i = left, j = right;
+    static private void QuickSort(IList<string> array,int first,int last)
+    {
+        string word = array[first];
+        int f = first, l = last;
         do
         {
-            while (String.Compare(word, arraySegment[i]) >= 0) i++;
-            while (String.Compare(word, arraySegment[j]) <= 0) j--;
+            while (String.Compare(word, array[f]) > 0) f++;
+            while (String.Compare(word, array[l]) < 0) l--;
 
-            if (i <= j)
+            if (f <= l)
             {
-                string tmp = arraySegment[i];
-                Console.WriteLine(i);
-                arraySegment[i] = arraySegment[j];
-                arraySegment[j] = tmp;
+                string tmp = array[f];
+                Console.WriteLine(f);
+                array[f] = array[l];
+                array[l] = tmp;
+                f++;
+                l--;
             }
 
-        } while (i <= j);
+        } while (f < l);
 
-        //Рекурсивные вызовы, если осталось, что сортировать
-        if (j > 0)
+        if (l > first)
         {
-            QuickSort(arraySegment, j + 1, right);
+            QuickSort(array, first, l);
         }
-        if (i < arraySegment.Count)
+        if (f < last)
         {
-            QuickSort(arraySegment, left, i);
+            QuickSort(array, f, last);
         }
-        */
     }
 }
