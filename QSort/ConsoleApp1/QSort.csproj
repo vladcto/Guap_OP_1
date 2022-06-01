@@ -50,10 +50,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="analysis.txt" />
     <Content Include="test1.txt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>test1.cs</LastGenOutput>
     </Content>
+    <Content Include="inp.txt" />
+    <Content Include="res1.txt" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
