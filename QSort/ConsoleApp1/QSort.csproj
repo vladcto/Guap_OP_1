@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="analysis.txt" />
+    <Content Include="inp2 - Копировать.txt" />
+    <Content Include="inp2.txt" />
     <Content Include="test1.txt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>test1.cs</LastGenOutput>

@@ -96,7 +96,8 @@ static public class Algorithm
 {
     static public void QuickSort(this IList<string> list)
     {
-        Func<string, string, bool> func = (f, s) => string.Compare(f, s) > 0;
+        Func<string, string, bool> func = (f, s) => string.Compare(f, s) > 0
+        ^ (char.IsDigit(f[0]) != char.IsDigit(s[0]));
         QuickSort(list, 0, list.Count - 1, func);
     }
 
@@ -107,7 +108,7 @@ static public class Algorithm
 
     static private void QuickSort<T>(IList<T> array, int first, int last, Func<T, T, bool> comparator)
     {
-        T key = array[first];
+        T key = array[(first + last) / 2];
         int f = first, l = last;
         do
         {
